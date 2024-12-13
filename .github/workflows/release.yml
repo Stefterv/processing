@@ -69,6 +69,8 @@ jobs:
         with: 
           p12-file-base64: ${{ secrets.CERTIFICATES_P12 }}
           p12-password: ${{ secrets.CERTIFICATES_P12_PASSWORD }}
+      - name: Create OS-specific folder
+        run: mkdir -p ${{ matrix.os_prefix }}
       - name: Build Release
         run: ant -noinput -buildfile build/build.xml ${{ matrix.os_prefix }}-dist -Dversion="${{ needs.version.outputs.version }}"
         env:

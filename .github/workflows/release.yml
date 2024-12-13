@@ -28,6 +28,7 @@ jobs:
     permissions:
       contents: write
     strategy:
+      fail-fast: false
       matrix:
         include:
           # compiling for arm32 needs a self-hosted runner on Raspi OS (32-bit)
@@ -60,7 +61,7 @@ jobs:
       - name: Install Java
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
+          java-version: '8'
           distribution: 'temurin'
           architecture: ${{ matrix.arch }}
       - name: Setup Ant
